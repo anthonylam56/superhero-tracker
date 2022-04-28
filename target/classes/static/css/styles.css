@@ -1,0 +1,116 @@
+:root{
+    --ticknum:-400px;
+    --ticktime:15s;
+}
+
+/* Ticker tape styles */
+/* Ticker Header style*/
+.page-centered{
+    display: flex;
+    vertical-align: center;
+}
+
+
+
+/* (A) FIXED WRAPPER */
+.hwrap {
+    overflow: hidden; /* HIDE SCROLL BAR */
+    background: rgba(29, 25, 25, 0);
+    width: 100%; /* Adjust ticker width with div sized to desired width and wrapping this element */
+}
+
+/* (B) MOVING TICKER WRAPPER */
+.hmove { display: flex; }
+
+/* (C) ITEMS - INTO A LONG HORIZONTAL ROW */
+.hitem {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+/* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
+@keyframes tickerh {
+    0% { transform: translate3d(100%, 0, 0); }
+    100% { transform: translate3d(var(--ticknum), 0, 0); }
+}
+.hmove { animation: tickerh linear var(--ticktime) infinite; }
+.hmove:hover { animation-play-state: paused; }
+
+/* End of ticker tape styles */
+
+/* top nav styles */
+
+.topnav{
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+  /* Change the color of links on hover */
+.topnav a:hover {
+    background-color: red;
+    color: black;
+}
+
+  /* Add a color to the active/current link */
+.topnav a.active {
+    background-color: red;
+    color: white;
+}
+
+.center{
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* end of top nav styles */
+
+/* table data styles */
+
+td.data{
+    vertical-align: middle;
+    text-align: center;
+}
+
+table.centered{
+    margin: auto;
+}
+/* end of table data styles*/
+
+/* map style */
+
+#map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+    }
+
+/* end of map style*/
+
+#map-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#map-container {
+  padding: 56.25% 0 0 0;
+  height: 0;
+  position: relative;
+  }

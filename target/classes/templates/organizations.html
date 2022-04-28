@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+        <link href="./css/topnav.css" rel="stylesheet">
+        <title>SuperHero Sightings</title>
+    </head>
+    <body>
+        <!-- Main Body-->
+
+        <div>
+            <div>
+                <h1 class = "text-lg-center"><a href="index" class="text-dark"> Superhero Sightings</a></h1> 
+            </div>
+        </div>
+        <div class="topnav center">
+            <div><a href="heroes">Superheroes</a></div>
+            <div><a href="locations">Locations</a></div>
+            <div><a class="active" href="organizations">Organizations</a></div>
+            <div><a href="sightings" >Sightings</a></div>
+            <div><a href="superpowers">Superpowers</a></div>
+        </div>
+        <div class="container" align="center">
+            <button id="toggleOrgForm" class="btn btn-outline-secondary" type="button">Add New Organization</button>
+            <form action="organsupers" method="POST" style="display:inline;">
+                <select name="supSelect" class="form-select" aria-label="Default select example">
+                    <option value="0" th:selected="${select==0}">Filter by Super Members</option>
+                    <option th:each="sup : ${supers}" th:value="${sup.id}" th:text="${sup.name}" th:selected="${selects==sup.id}">One</option>
+                </select>
+                <input type="submit" value="Filter Locations" />
+            </form>
+            <div id="addOrg" style="display:none;">
+                <div th:replace="fragments/super.html :: addOrgForm"></div>
+            </div> 
+        </div>
+        <div th:replace="fragments/table.html :: orgTable"></div>
+        <!-- End of main body-->
+        <!-- Optional Javascript-->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>
+

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link th:href="@{/css/styles.css}" rel="stylesheet">
+<link rel ="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+    <div class="container" th:fragment="powerTable">
+        <div class="col text-center m-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="power : ${powers}">
+                            <td th:text="${power.id}">Superhero ID</td>
+                            <td th:text="${power.name}">Superhero Name</td>
+                            <td th:text="${power.descr}">Superhero Description</td>
+                            <td><a href="#" th:href="@{/editPower(id=${power.id})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deletePower(id=${power.id})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <div class="container" th:fragment="locTable">
+        <div class="col text-center m-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Address</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Sighting Dates</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="loc : ${locs}">
+                            <td th:text="${loc.id}">Superhero ID</td>
+                            <td th:text="${loc.name}">Superhero Name</td>
+                            <td th:text="${loc.descr}">Superhero Description</td>
+                            <td th:text="${loc.address}">Superhero Address</td>
+                            <td th:text="${loc.latitude}">Superhero Latitude</td>
+                            <td th:text="${loc.longitude}">Superhero Longitude</td>
+                            <td th:insert="fragments/general.html :: dateList"
+                                th:with="list=${loc.sightings}">Superhero Power</td>
+                            <td><a href="#" th:href="@{/editLocal(id=${loc.id})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteLocal(id=${loc.id})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <div class="container" th:fragment="orgTable">
+        <div class="col text-center m-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Address</th>
+                            <th>Members</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="org : ${orgs}">
+                            <td th:text="${org.id}">Superhero ID</td>
+                            <td th:text="${org.name}">Superhero Name</td>
+                            <td th:text="${org.descr}">Superhero Description</td>
+                            <td th:text="${org.address}">Superhero Description</td>
+                            <td th:insert="fragments/general.html :: valueList"
+                                th:with="list=${org.supers}">Superhero Power</td>
+                            <td><a href="#" th:href="@{/editOrg(id=${org.id})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteOrg(id=${org.id})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <div class="container" th:fragment="sightTable">
+        <div class="col text-center m-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Super Seen</th>
+                            <th>Location</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sight : ${sightings}">
+                            <td th:text="${sight.id}">Superhero ID</td>
+                            <td th:text="${sight.date}">Superhero Name</td>
+                            <td th:text="${sight.superp.name}">Superhero Description</td>
+                            <td th:text="${sight.location.name}">Superhero Description</td>
+                            <td><a href="#" th:href="@{/editSighting(id=${sight.id})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteSighting(id=${sight.id})}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

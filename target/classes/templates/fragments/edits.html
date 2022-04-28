@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link th:href="@{/css/styles.css}" rel="stylesheet">
+<link rel ="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+    <div class="container" th:fragment="editSuperForm">
+        <form action="editSuper" method="POST" enctype="multipart/form-data" >
+            <div class="form-group row">
+                <label for="name" class="col-3 col-form-label">
+                    Name</label>
+                <div class="col-9">
+                    <input type="text" name="name" 
+                        id="name" class="form-control"
+                        th:value="${super.name}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="descr" class="col-3 col-form-label">
+                    Description</label>
+                <div class="col-9">
+                    <input type="text" name="descr" 
+                        id="descr" class="form-control"
+                        th:value="${super.descr}"/>
+                </div>
+            </div>
+            <!-- photo portion -->
+            <img th:src="@{${super.photos}}" alt="No image exists" width="100">
+            <div>
+
+                <label>Photos: </label>
+                <input type="file" name="image" accept="image/png, image/jpeg" />
+
+            </div>
+            
+            <!-- end photo portion -->
+            <div class="form-group flex-row d-flex">
+                <div class="p-2">
+                    <input type="radio" name="hero" 
+                             id="hero" value="hero" th:checked="${super.hero} ? 'checked'"/>
+                    <label for="hero" class="col-form-label">
+                        Is Hero?</label>
+                    <input type="radio" name="hero" 
+                             id="villain" value="villain" th:checked="!${super.hero} ? 'checked'"/>
+                    <label for="villain" class="col-form-label">
+                        Is Villain?</label>
+                </div>
+                <div class="p-2">
+                    <div>
+                        <label>Select Powers</label>
+                        <div th:each="power : ${pows}">
+                            <input type="checkbox" th:name="${power.name}" 
+                                id="power" th:value="${power.name}" th:checked="${super.powers.contains(power)} ? 'checked'"/>
+                            <label for="power" class="col-form-label" th:text="${power.name}">
+                                Select Powers</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <label>Select Organizations</label>
+                        <div th:each="org : ${orgs}">
+                            <input type="checkbox" th:name="${org.name}" 
+                                id="org" th:value="${org.name}" th:checked="${super.organizations.contains(org)} ? 'checked'"/>
+                            <label for="org" class="col-form-label" th:text="${org.name}">
+                                Select Powers</label>
+                        </div>
+                </div>
+            </div>
+            <input type="hidden" name="id" th:value="${super.id}"/>
+            <button id="heroEditSubmit" type="submit" class="btn btn-primary">Update Super</button>
+        </form>
+    </div>
+    <!-- edit powers -->
+    <div class="container" th:fragment="editPowerForm">
+        <form action="editPower" method="POST">
+            <div class="form-group row">
+                <label for="name" class="col-3 col-form-label">
+                    Name</label>
+                <div class="col-9">
+                    <input type="text" name="name" 
+                        id="name" class="form-control"
+                        th:value="${power.name}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="descr" class="col-3 col-form-label">
+                    Description</label>
+                <div class="col-9">
+                    <input type="text" name="descr" 
+                        id="descr" class="form-control"
+                        th:value="${power.descr}"/>
+                </div>
+            </div>
+            <input type="hidden" name="id" th:value="${power.id}"/>
+            <button id="powerSubmit" type="submit" class="btn btn-primary">Edit Power</button>
+        </form>
+    </div>
+    <!-- edit location -->
+    <div class="container" th:fragment="editLocalForm">
+        <form action="editLocal" method="POST">
+            <div class="form-group row">
+                <label for="name" class="col-3 col-form-label">
+                    Name</label>
+                <div class="col-9">
+                    <input type="text" name="name" 
+                        id="name" class="form-control"
+                        th:value="${loc.name}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="descr" class="col-3 col-form-label">
+                    Description</label>
+                <div class="col-9">
+                    <input type="text" name="descr" 
+                        id="descr" class="form-control"
+                        th:value="${loc.descr}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="address" class="col-3 col-form-label">
+                    Address</label>
+                <div class="col-9">
+                    <input type="text" name="address" 
+                        id="address" class="form-control"
+                        th:value="${loc.address}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lat" class="col-3 col-form-label">
+                    Latitude</label>
+                <div class="col-9">
+                    <input type="text" name="lat" 
+                        id="lat" class="form-control"
+                        th:value="${loc.latitude}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="log" class="col-3 col-form-label">
+                    Longitude</label>
+                <div class="col-9">
+                    <input type="text" name="log" 
+                        id="log" class="form-control"
+                        th:value="${loc.longitude}"/>
+                </div>
+            </div>
+            <input type="hidden" name="id" th:value="${loc.id}"/>
+            <button id="localSubmit" type="submit" class="btn btn-primary">Edit Location</button>
+        </form>
+    </div>
+    <!-- edit organizations -->
+    <div class="container" th:fragment="editOrgForm">
+        <form action="editOrg" method="POST">
+            <div class="form-group row">
+                <label for="name" class="col-3 col-form-label">
+                    Name</label>
+                <div class="col-9">
+                    <input type="text" name="name" 
+                        id="name" class="form-control"
+                        th:value="${org.name}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="descr" class="col-3 col-form-label">
+                    Description</label>
+                <div class="col-9">
+                    <input type="text" name="descr" 
+                        id="descr" class="form-control"
+                        th:value="${org.descr}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="address" class="col-3 col-form-label">
+                    Address</label>
+                <div class="col-9">
+                    <input type="text" name="address" 
+                        id="address" class="form-control"
+                        th:value="${org.address}"/>
+                </div>
+            </div>
+            <input type="hidden" name="id" th:value="${org.id}"/>
+            <button id="orgSubmit" type="submit" class="btn btn-primary">Edit Organization</button>
+        </form>
+    </div>
+    <!-- edit sightings -->
+    <div class="container" th:fragment="editSightForm">
+        <form action="editSighting" method="POST">
+            <div class="form-group row">
+                <label for="date" class="col-3 col-form-label">
+                    Date</label>
+                <div class="col-9">
+                    <input type="datetime-local" name="date" 
+                        id="date" class="form-control"
+                        th:value="${sg.date}"/>
+                </div>
+            </div>
+            <div class="form-group flex-row d-flex">
+                <div class="p-2">
+                    <div>
+                        <label>Select Super</label>
+                        <div th:each="sup : ${sups}">
+                            <input type="radio" name="seenSuper" 
+                                id="sup" th:value="${sup.id}" th:checked="${sup.equals(sg.superp)} ? 'checked'"/>
+                            <label for="sup" class="col-form-label" th:text="${sup.name}">
+                                Select Super</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div>
+                        <label>Select Location</label>
+                        <div th:each="loc : ${locs}">
+                            <input type="radio" name="local" 
+                                id="loc" th:value="${loc.id}" th:checked="${loc.equals(sg.location)} ? 'checked'"/>
+                            <label for="loc" class="col-form-label" th:text="${loc.name}">
+                                Select Location</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="id" th:value="${sg.id}"/>
+            <button id="sightSubmit" type="submit" class="btn btn-primary">Edit Sighting</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

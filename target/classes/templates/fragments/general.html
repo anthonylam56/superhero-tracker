@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<link th:href="@{/css/styles.css}" rel="stylesheet">
+<link rel ="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
+    <!-- header fragments -->
+    <div th:fragment="header">
+        <div class="row m-4">
+            <div class="col text-center border border-dark">
+                <h1 th:text='${headerText}'></h1>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar fragment -->
+    <div th:fragment='nav-bar'>
+        <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <a href="heroes" class="btn btn-outline-primary btn-lg">Supers</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="superpowers" class="btn btn-outline-primary btn-lg">Powers</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+            </div>
+        </div>
+    </div>
+    <!-- ticker fragment -->
+    <div th:fragment="ticker">
+        <div class="hwrap">
+            <div class="hmove">
+                <div th:each="sighting : ${sightings}" class="hitem">
+                    <p th:text="${sighting.date}"></p>
+                    <p th:text="${sighting.superp.name}"></p>
+                </div>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+            var width = 0;
+            var tw = $('.hmove').outerWidth();
+            $('.hmove').children().each(function () {
+            width += $(this).outerWidth(true);
+            // change to .outerWidth(true) if you want to calculate margin too.
+            });
+            var tnum = -(width / tw) * 100;
+            var ttime = width / 100;
+            var r = document.querySelector(':root');
+            r.style.setProperty('--ticknum',tnum+'%');
+            r.style.setProperty('--ticktime',ttime+'s');
+            var rw = getComputedStyle(r);
+            //$(":root").attr("style","--ticknum:"+tnum+"%");  //not ifnding dependable jquery method of changing values
+            //$(":root").attr("style","--ticktime:"+ttime+"s");
+            console.log(width);
+            console.log(tw);
+            console.log(ttime);
+            console.log(rw.getPropertyValue('--ticknum'));
+            console.log(rw.getPropertyValue('--ticktime'));
+        </script>
+    </div>
+    <!-- form builder fragment -->
+    <div th:fragment="form">
+        <form>
+            <div th:each='field : ${fields}'>
+                <div th:replace="fragments/general.html
+                        :: formField(field=${field.name}, value=${field.value}, size=${field.size}, type=${field.type})">
+
+                     :: formField(field=${field.name}
+                     , value=${field.value}, size=${field.size})">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:fragment="formField (field, value, size, type)">
+        <div class="form-group row">
+            <div>
+                <label th:for="${#strings.toLowerCase(field)}"> <span
+                    th:text="${field}">Field</span>
+                </label>
+            </div>
+            <div>
+                <input th:type="${type}" th:id="${#strings.toLowerCase(field)}"
+                    th:name="${#strings.toLowerCase(field)}" th:value="${value}"
+                    th:size="${size}">
+            </div>
+        </div>
+    </div>
+    <!-- List fragment -->
+    <div th:fragment="valueList">
+        <div th:each="value : ${list}">
+            <p th:text="${value.name}"></p>
+        </div>
+    </div>
+    <div th:fragment="dateList">
+        <div th:each="value : ${list}">
+            <p th:text="${value.date}"></p>
+        </div>
+    </div>
+    <!-- footer fragments -->
+    <footer th:fragment="footer">
+        <a th:href="@{/supers}">Supers</a> | 
+        <a th:href="@{/powers}">Powers</a> | 
+        <a th:href="@{/locations}">Locations</a> | 
+        <a th:href="@{/organizations}">Organizations</a> |
+        <a th:href="@{/sightings}">Sightings</a>
+    </footer>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

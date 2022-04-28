@@ -1,0 +1,69 @@
+INSERT INTO supers (name,descr) VALUES("Superman","Man of steel");
+INSERT INTO supers (name,descr) VALUES("Spiderman","Friendly neighborhood");
+INSERT INTO supers (name,descr) VALUES("Batman","Dark knight");
+INSERT INTO supers (name,descr) VALUES("Wonder Women","Princess of Themscira");
+INSERT INTO supers (name,descr) VALUES("Wasp","Stings worse than a bee");
+INSERT INTO supers (name,descr) VALUES("Aquaman","All wet");
+
+INSERT INTO organizations (name,descr,address) VALUES ("The Avengers","It sounds dramatic","Avengers Tower");
+INSERT INTO organizations (name,descr,address) VALUES ("Justice League","Gathering of Heroes","Secret Sanctuary");
+INSERT INTO organizations (name,descr,address) VALUES ("The Defenders","The non-team","Sanctum Sanctorum");
+INSERT INTO organizations (name,descr,address) VALUES ("Fantastic Four","Four against Doom","Baxter Building");
+
+INSERT INTO powers (name,descr) VALUES ("Immeasurable Speed","Too fast to see");
+INSERT INTO powers (name,descr) VALUES ("Heat Vision","Melt you with a look");
+INSERT INTO powers (name,descr) VALUES ("Flight","Even in space");
+INSERT INTO powers (name,descr) VALUES ("Spider-Sense","He'll feel you coming");
+INSERT INTO powers (name,descr) VALUES ("Web-shooters","A sticky situation");
+INSERT INTO powers (name,descr) VALUES ("Superhuman strength","Need a lift");
+INSERT INTO powers (name,descr) VALUES ("Genius level Intelligence","Sharp as a tack");
+INSERT INTO powers (name,descr) VALUES ("Master Martial Artist","Like Chuck Norris");
+INSERT INTO powers (name,descr) VALUES ("Vast Wealth","Money buys almost anything");
+INSERT INTO powers (name,descr) VALUES ("Telepathy","Won't see my lips move");
+INSERT INTO powers (name,descr) VALUES ("Size Control","Big or small");
+INSERT INTO powers (name,descr) VALUES ("Insect Control","New meaning to bugging you");
+INSERT INTO powers (name,descr) VALUES ("Hydrokinesis","Water can hurt");
+INSERT INTO powers (name,descr) VALUES ("Marine Telepathy","Whale of a good time");
+
+
+INSERT INTO locations (name,descr,address,latitude,longitude) VALUES ("The Groves","Nice area","Mesa, AZ",33.432102,-111.737565);
+INSERT INTO locations (name,descr,address,latitude,longitude) VALUES ("LA County","Most populated","LA, Ca",34.016972,-117.993939);
+INSERT INTO locations (name,descr,address,latitude,longitude) VALUES ("Silver Hill","Old town","Albuquerque, NM",35.078339,-106.611615);
+INSERT INTO locations (name,descr,address,latitude,longitude) VALUES ("The Strip","Sin City","Las Vegas, NV",36.106248,-115.212821);
+
+INSERT INTO sightings (date,location_id,super_id) VALUES (1638854126,1,5);
+INSERT INTO sightings (date,location_id,super_id) VALUES (1638854126,1,2);
+INSERT INTO sightings (date,location_id,super_id) VALUES (1638846328,2,3);
+INSERT INTO sightings (date,location_id,super_id) VALUES (1638863487,3,4);
+INSERT INTO sightings (date,location_id,super_id) VALUES (1638846328,2,6);
+INSERT INTO sightings (location_id,super_id) VALUES (4,1);
+
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("1","1");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("2","1");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("3","1");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("6","1");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("4","2");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("5","2");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("6","2");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("7","3");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("8","3");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("9","3");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("6","4");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("7","4");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("10","4");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("8","5");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("11","5");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("12","5");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("7","6");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("6","6");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("13","6");
+INSERT INTO powers_has_super (powers_id,super_id) VALUES ("14","6");
+
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("2","1");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("1","2");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("4","2");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("2","3");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("2","4");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("1","5");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("3","5");
+INSERT INTO super_has_organization (organization_id,super_id) VALUES ("2","6");
