@@ -17,10 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author etdeh
- */
+
 @Entity
 @Table (name="sightings")
 public class Sighting {

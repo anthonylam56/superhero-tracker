@@ -15,10 +15,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.dao.DataIntegrityViolationException;
 
-/**
- *
- * @author etdeh
- */
 public interface SuperHeroDao {
     List<Super> getSupersSeenAtLoc(Location loc)throws DataIntegrityViolationException;
     List<Location> getLocsWhereSuperSeen(Super sup)throws DataIntegrityViolationException;

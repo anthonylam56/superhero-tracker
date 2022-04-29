@@ -18,10 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-/**
- *
- * @author etdeh
- */
+
 @Entity
 @Table (name="organizations")
 public class Organization {

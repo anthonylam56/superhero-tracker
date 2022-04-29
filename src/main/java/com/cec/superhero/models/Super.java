@@ -24,10 +24,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-/**
- *
- * @author etdeh
- */
 @Entity
 @Table (name="supers")
 public class Super {

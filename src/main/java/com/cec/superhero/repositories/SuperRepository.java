@@ -10,10 +10,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author etdeh
- */
 @Repository
 public interface SuperRepository extends JpaRepository<Super, Integer>{
     List<Super> findByName(String name);

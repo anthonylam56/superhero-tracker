@@ -23,10 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author etdeh
- */
 @Repository
 public class SuperHeroDaoDbImpl implements SuperHeroDao{
     @Autowired
